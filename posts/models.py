@@ -1,29 +1,23 @@
-"""Post Models."""
+"""Post models, for the users"""
+# Django
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 
-# Create your models here.
+# Models
+from users.models import Profile
 
-# imma creating the models here
+class Post(models.Model):
+    """Post model."""
 
-class User(models.Model):
-    """User Model"""
-    #Login
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    #Personal data
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=CASCADE)
 
-    bio = models.TextField(blank=True)
+    tittle = models.CharField(max_length=260)
+    photo = models.ImageField(upload_to="posts/photos")
 
-    birthday = models.DateField(blank=True, null=True)
-    #Role
-    is_admin = models.BooleanField(default=False)
-    #Account Data
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    def __str__(self) :
-        """Returns the user's email"""
-        return self.email
-            
+    def __str__(self) -> str:
+        return f"{self.tittle} by @{self.user.username}"

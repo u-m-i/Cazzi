@@ -1,17 +1,35 @@
-# Django
+"""Posts views"""
+
+
 from django.shortcuts import render
-
-#Utilities
+from django.http import HttpResponse
 from datetime import datetime
-
 # Create your views here.
 
 posts = [
     {
+        "title": "Navigate",
+        "user": {
+            "name": "Yami",
+            "picture": "https://vocadb.net/Artist/Picture/59773",  
+        },
+        "timestamp": datetime.now().strftime("%b %dth, %Y - %H:%M hrs"),
+        "photo" :  "https://q-xx.bstatic.com/xdata/images/hotel/840x460/78809294.jpg?k=cf850d507a9671cf7ff85d598435ea329a28cd4f1b1abc25c1892c91156d36ad&o=",
+    },
+    {
+        "title": "Aniversary",
+        "user": {
+            "name": "Miguel",
+            "picture": "https://i.pinimg.com/474x/55/f2/63/55f26318b0dc191f97557ead146acdf3.jpg" ,      
+        },
+        "timestamp": datetime.now().strftime("%b %dth, %Y - %H:%M hrs"),
+        "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLQOSqoj_D8MhtjUB8t551oWaeKpQvSWgRhQ&usqp=CAU",
+    },
+    {
         'title': 'Mont Blanc',
         'user': {
-            'name': 'Diego Norrea',
-            'picture': 'https://i1.sndcdn.com/avatars-RePbt181zZmasG8Q-wrGlhg-t500x500.jpg'
+            'name': 'Yésica Cortés',
+            'picture': 'https://picsum.photos/60/60/?image=1027'
         },
         'timestamp': datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
         'photo': 'https://picsum.photos/800/600?image=1036',
@@ -32,12 +50,10 @@ posts = [
             'picture': 'https://picsum.photos/60/60/?image=883'
         },
         'timestamp': datetime.now().strftime('%b %dth, %Y - %H:%M hrs'),
-        'photo': 'https://i.ytimg.com/vi/67MsNUdKJG4/hqdefault.jpg',
+        'photo': 'https://picsum.photos/500/700/?image=1076',
     }
 ]
-def list_posts(request):
-    """list the existing posts
-    """
-    return render(request,'feed.html', {'posts': posts}) #render recibe el objeto request, luego da el template a la vista
-                                                         # luego de recibir el template, recibe el contexto que el pasemos.
-    
+
+def list_post(request):
+    """List the lastest posts"""
+    return render(request, "/home/umi/Documents/Projects/Platzi/c_django/templates/posts/feed.html", {"posts": posts})

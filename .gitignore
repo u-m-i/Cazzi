@@ -1,14 +1,17 @@
 # Django
 media/
-migrations/
 pictures/
+*.log
+local_settings.py
+db.sqlite3
 
 # Python
 .venv/
 .env/
 __pycache__/
 media/
-db.sqlite3/
+
+
 
 #Visual studio code
 

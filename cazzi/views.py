@@ -1,41 +1,33 @@
-""" Views of cazzi
-"""
-#utilities
-from datetime import datetime
-
-#Django
+# Django
 from django.http import HttpResponse
-from django.http import JsonResponse
-import json
 
+# Utilities
+from datetime import  datetime
 
-def hello_there(request):
-    """Return the time zip a gretting
+def feed(request):
+    """ Return the feed
     """
-    now = datetime.now().strftime('%b %dth, %Y - %H:%M hrs')
-    return HttpResponse(f'Konbanwa! your time is currently {now}')
 
+    return 
 
-def otsu(request):
-    """Otsuuu
+def static_page(request):
     """
-    # numbers = sorted([int(number) for number in request.GET['numbers'].split(',')]) 
-    # return JsonResponse({"numbers" : numbers}, json_dumps_params={'indent': 4 }, safe=False)
-    numbers = sorted([int(number) for number in request.GET['numbers'].split(',')]) 
-    data = {
-        'status' : 'ok',
-        'numbers' : numbers,
-        'message' : 'Sugoi des, successfully sorted'
-    }
-    return HttpResponse(
-        json.dumps(data),
-        content_type='application/json')
+    Return a greeting
 
-def otsu_mayor(request,namae,age):
-    """If you are a underage, will raise a warning, otherwise, you'r welcom
     """
-    if age > 15:
-        return HttpResponse(f'otsuuuu {namae} welcom to Cazzi')
-    else:
-        return HttpResponse(f'yo bro, gtf of here')
 
+    return  HttpResponse("Loco, i cameback to learn and make my copy of instagram")
+
+def your_time(request):
+    """ Return the current server time
+    """
+    now = datetime.now().strftime('%b, %dth, %Y - %H:%M hrs ')
+
+    return HttpResponse(f"Hello there, your current time is {now}")
+
+def converter(request):
+    """Sort an array of numbers"""
+
+    numbers = request.GET["numbers"]
+    breakpoint()
+    return HttpResponse(str(numbers))
