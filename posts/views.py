@@ -56,4 +56,4 @@ posts = [
 
 def list_post(request):
     """List the lastest posts"""
-    return render(request, "/home/umi/Documents/Projects/Platzi/c_django/templates/posts/feed.html", {"posts": posts})
+    return render(request, "/home/umi/Documents/Projects/Platzi/Cazzi/templates/posts/feed.html", {"posts": posts})
