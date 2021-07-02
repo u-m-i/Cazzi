@@ -10,7 +10,7 @@ from users import views as user_views
 from posts import views as posts_views
 
 urlpatterns = [
-    path("posts/", posts_views.list_post),
+    path("posts/", posts_views.list_post, name="feed"),
     path("admin/", admin.site.urls),
     path("users/login/", user_views.login_view, name="login")
 

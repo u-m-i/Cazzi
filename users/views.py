@@ -1,13 +1,23 @@
-from django.shortcuts import render
+"""Users views"""
+
+# From django
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+
 
 def login_view(request):
     """Login view
     """
-    if request.method == "POSTS":
-        print("*" * 10)
+    if request.method == "POST":
+        
         username = request.POST["username"]
-        password = reques.POST["password"]
-        print(username, ":", password)
-        print("*" * 10 )
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+
+        if user:
+            login(request,user)
+            return redirect("feed")
+        else:
+            return render(request, "users/login.html", {"error":"Invalid Username and password"})
+        
     return render(request, "users/login.html")

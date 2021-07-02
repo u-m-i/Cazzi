@@ -1,8 +1,21 @@
+
 {% extends "users/base.html" %}
 
 {% block head_content %}
 <title>Cazzi Login</title>
 {% endblock %}
+
 {% block container %}
-    <form method="POST" action="{%url 'login' %}"> </form>
+
+    {% if error %}
+        <p style="color:#32afaf;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="POST" action="{%url 'login' %}"> 
+        {% csrf_token %}
+        <input type="text" placeholder="Username" name="username"> 
+        <input type="password" placeholder="Password" name="password">
+        <button type="submit" > Signin  </button>
+    </form>
+
 {% endblock %}
