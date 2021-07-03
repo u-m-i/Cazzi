@@ -12,6 +12,7 @@ from posts import views as posts_views
 urlpatterns = [
     path("posts/", posts_views.list_post, name="feed"),
     path("admin/", admin.site.urls),
-    path("users/login/", user_views.login_view, name="login")
+    path("users/login/", user_views.login_view, name="login"),
+    path("users/logout/", user_views.logout_view, name="logout"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
