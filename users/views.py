@@ -72,3 +72,17 @@ def signup(request):
         return redirect("login")
 
     return render(request, "users/signup.html")
+
+@login_required
+def update_profile(request):
+    """Update user view"""
+    profile = request.user.profile
+
+    return render(
+        request, 
+        "users/update_profile.html",
+        context={
+            "profile": profile,
+            "user": request.user,
+        }, 
+    )
