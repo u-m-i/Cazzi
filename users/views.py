@@ -14,6 +14,11 @@ from django.contrib.auth.models import User
 # Exceptions
 
 from django.db.utils import IntegrityError as IE
+# from django.db.models.fields import RelatedObjectDoesNotExist as ROD
+
+# Forms
+
+from users.forms import ProfileForm
 
 
 def login_view(request):
@@ -73,10 +78,29 @@ def signup(request):
 
     return render(request, "users/signup.html")
 
-@login_required
+
+
 def update_profile(request):
     """Update user view"""
     profile = request.user.profile
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+
+        if form.is_valid:
+            data = form.data
+            print(profile.picture.url)
+            print(data)
+            
+
+            profile.website = data["website"]
+            profile.phone_number = data["phone_number"]
+            profile.biography = data["biography"]
+            profile.save()
+
+            redirect("update_profile")
+    else:
+        form = ProfileForm()
 
     return render(
         request, 
@@ -84,5 +108,6 @@ def update_profile(request):
         context={
             "profile": profile,
             "user": request.user,
+            "form" : form,
         }, 
     )

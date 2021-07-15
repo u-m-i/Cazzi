@@ -13,13 +13,14 @@
         <div class="col-6 p-4" id="profile-box">
 
             <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
+                
                 {% csrf_token %}
 
                 {% if form.errors %}
                     <p>{{ form.errors }}</p>
                 {% endif %}
 
-                <div class="media">
+                <div class="media form-group">
                     {% if profile.picture %}
                         <img src="{{ profile.picture.url }}" class="rounded-circle" height="50" />
                     {% else%}
